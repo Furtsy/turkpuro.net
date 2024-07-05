@@ -224,7 +224,7 @@
             copyButton.onclick = function() {
                 var dummy = document.createElement('textarea');
                 document.body.appendChild(dummy);
-                dummy.value = "turkpuro.net?id=" + img.alt;
+                dummy.value = "https://turkpuro.net?id=" + img.alt;
                 dummy.select();
                 document.execCommand('copy');
                 document.body.removeChild(dummy);
