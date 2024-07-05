@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="icon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <title>turkpuro.net</title>
+    <meta name="description" content="türkpuro harmanı oldum">
+    <meta name="keywords" content="türkpuro, türk puro, türk purosu">
+    <meta property="og:title" content="türkpuro.net"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="türkpuro harmanı oldum" />
+    <meta property="og:url" content="https://turkpuro.net/" />
+    <meta name="twitter:title" content="turkpuro.net">
+    <meta name="twitter:description" content="türkpuro harmanı oldum">
+
+    <style>
+        body {
+            background-color: #0d131e;
+            color: white;
+            font-family: 'Rubik', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5em;
+            color: #aa0022;
+        }
+
+        #puropano {
+            margin-top: 50px;
+        }
+
+        .image-container {
+            display: inline-block;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .image-id {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #aa0022;
+        }
+
+        img {
+            margin: 20px auto;
+            display: block;
+            max-width: 100%;
+            height: auto;
+            height: 650px;
+        }
+
+        .navigation-buttons {
+            margin-top: 20px;
+        }
+
+        .navigation-buttons button {
+            background-color: #aa0022;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .navigation-buttons button:hover {
+            background-color: #880016;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .copy-button:hover {
+            background-color: #555;
+        }
+
+        .tedkwasright-logos {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .tedkwasright-logos a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .github-logo {
+            background-image: url('svg/github.svg');
+            width: 30px;
+            height: 30px;
+        }
+
+        .telegram-logo {
+            background-image: url('svg/telegram.svg');
+            width: 30px;
+            height: 30px;
+        }
+
+        @media screen and (max-width: 768px) {
+            img {
+                width: 100vw;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>turkpuro.net</h1>
+    <div id="puropano"></div>
+    <div class="navigation-buttons">
+        <button id="previousButton" onclick="showPreviousImage()" style="display: none;">Önceki</button>
+        <button id="randomButton" onclick="showRandomImage()">Rastgele</button>
+        <button id="nextButton" onclick="showNextImage()" style="display: none;">Sonraki</button>
+    </div>
+
+    <div class="tedkwasright-logos">
+        <a class="github-logo" href="https://github.com/Furtsy/turkpuro.net" target="_blank" title="GitHub"></a>
+        <a class="telegram-logo" href="https://t.me/redooms" target="_blank" title="Telegram"></a>
+    </div>
+
+    <script>
+        var images = [
+            "img/maskepuro.jpg",
+            "img/arnoldpuro.jpg",
+            "img/bukimpuro.jpg",
+            "img/brkbpuro.jpg",
+            "img/azizpuro.jpg",
+            "img/nebropuro.jpg",
+            "img/purokutusu.jpg",
+            "img/serdarortacpuro.jpg",
+            "img/sopranospuro2.jpg",
+            "img/resimpuro.jpg",
+            "img/serdarortacpuro2.jpg",
+            "img/gevurpng.jpg",
+            "img/serdarortacpuro3.jpg",
+            "img/amerikansapikpuro.jpg",
+            "img/kopke.jpg",
+            "img/asyapuro.jpg",
+            "img/clintpuro.jpg",
+            "img/negropuro.jpg",
+            "img/serdarortacpuro4.jpg",
+            "img/mclovinpuro.jpg",
+            "img/sopranospuro1.jpg",
+            "img/nejatpuro.jpg",
+            "img/otistikpuro.jpg",
+            "img/purolarpuro.jpg",
+            "img/tpbpuro.jpg",
+            "img/waltpuro.jpg",
+            "img/boakpuro.jpg",
+            "img/nibaspuro.jpg",
+            "img/sopranospuro5.jpg",
+            "img/tpbrandy.jpg",
+            "img/sopranospuro4.jpg",
+            "img/tatepuro.jpg",
+            "img/madspuro.jpg",
+            "img/sopranospuro3.jpg",
+            "img/rustpuro.jpg",
+            "img/clintpuro1.jpg",
+            "img/sokakroportajpuro.jpg",
+            "img/oppenheimerpuro.jpg",
+            "img/jessewaltpuro.jpg",
+            "img/madpuro.jpg",
+            "img/dicapriopuro.jpg",
+            "img/behzatpuro.jpg",
+            "img/mattpuro.jpg",
+            "img/opuro.jpg",
+            "img/waltuhpuro.jpg",
+        ];
+
+        var currentImageId = 0;
+
+        function getQueryParam(name) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('previousButton').style.display = currentImageId === 1 ? 'none' : 'inline-block';
+            document.getElementById('nextButton').style.display = currentImageId === images.length ? 'none' : 'inline-block';
+        }
+
+        function showImage(imageId) {
+            var puropano = document.getElementById('puropano');
+            puropano.innerHTML = '';
+
+            var container = document.createElement('div');
+            container.className = 'image-container';
+
+            var idLabel = document.createElement('div');
+            idLabel.className = 'image-id';
+            idLabel.textContent = "#" + imageId;
+
+            var img = document.createElement('img');
+            img.src = images[imageId - 1];
+            img.alt = imageId;
+
+            var copyButton = document.createElement('button');
+            copyButton.className = 'copy-button';
+            copyButton.textContent = 'Kopyala';
+            copyButton.onclick = function() {
+                var dummy = document.createElement('textarea');
+                document.body.appendChild(dummy);
+                dummy.value = "turkpuro.net?id=" + img.alt;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                alert('Puro link kopyalandı');
+            };
+
+            container.appendChild(idLabel);
+            container.appendChild(img);
+            container.appendChild(copyButton);
+            puropano.appendChild(container);
+
+            currentImageId = imageId;
+            updateNavigationButtons();
+        }
+
+        window.onload = function() {
+            var idFromUrl = getQueryParam('id');
+            if (idFromUrl) {
+                var imageId = parseInt(idFromUrl);
+                if (!isNaN(imageId) && imageId >= 1 && imageId <= images.length) {
+                    showImage(imageId);
+                } else {
+                    var randomId = Math.floor(Math.random() * images.length) + 1;
+                    showImage(randomId);
+                }
+            } else {
+                var randomId = Math.floor(Math.random() * images.length) + 1;
+                showImage(randomId);
+            }
+        };
+
+        function showPreviousImage() {
+            if (currentImageId > 1) {
+                showImage(currentImageId - 1);
+            }
+        }
+
+        function showNextImage() {
+            if (currentImageId < images.length) {
+                showImage(currentImageId + 1);
+            }
+        }
+
+        function showRandomImage() {
+            var randomId = Math.floor(Math.random() * images.length) + 1;
+            showImage(randomId);
+        }
+    </script>
+</body>
+</html>
