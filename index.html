@@ -266,6 +266,7 @@
                 var imageId = parseInt(idFromUrl);
                 if (!isNaN(imageId) && imageId >= 1 && imageId <= images.length) {
                     showImage(imageId);
+                    metaPuro(imageId);
                 } else {
                     var randomId = Math.floor(Math.random() * images.length) + 1;
                     showImage(randomId);
@@ -275,6 +276,20 @@
                 showImage(randomId);
             }
         };
+
+
+        function metaPuro(imageId) {
+            var imageUrl = images[imageId - 1];
+            var metaTag = document.querySelector('meta[property="og:image"]');
+            if (metaTag) {
+                metaTag.setAttribute('content', imageUrl);
+            } else {
+                metaTag = document.createElement('meta');
+                metaTag.setAttribute('property', 'og:image');
+                metaTag.setAttribute('content', imageUrl);
+                document.getElementsByTagName('head')[0].appendChild(metaTag);
+            }
+        }
 
         function showPreviousImage() {
             if (currentImageId > 1) {
