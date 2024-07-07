@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="icon" type="image/x-icon" href="icon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet" />
     <title>turkpuro.net</title>
-    <meta name="description" content="türkpuro harmanı oldum">
-    <meta name="keywords" content="türkpuro, türk puro, türk purosu">
-    <meta property="og:title" content="turkpuro.net"/>
+    <meta name="description" content="türkpuro harmanı oldum" />
+    <meta name="keywords" content="türkpuro, türk puro, türk purosu" />
+    <meta property="og:title" content="turkpuro.net" />
     <meta property="og:type" content="website" />
     <meta property="og:description" content="türkpuro harmanı oldum" />
     <meta property="og:url" content="https://turkpuro.net/" />
-    <meta name="twitter:title" content="turkpuro.net">
-    <meta name="twitter:description" content="türkpuro harmanı oldum">
+    <meta property="og:image" content="" id="ogImage" />
+    <meta name="twitter:title" content="turkpuro.net" />
+    <meta name="twitter:description" content="türkpuro harmanı oldum" />
 
     <style>
         body {
             background-color: #0d131e;
             color: white;
-            font-family: 'Rubik', sans-serif;
+            font-family: "Rubik", sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
@@ -112,13 +113,13 @@
         }
 
         .github-logo {
-            background-image: url('svg/github.svg');
+            background-image: url("svg/github.svg");
             width: 30px;
             height: 30px;
         }
 
         .telegram-logo {
-            background-image: url('svg/telegram.svg');
+            background-image: url("svg/telegram.svg");
             width: 30px;
             height: 30px;
         }
@@ -136,9 +137,9 @@
     <h1>turkpuro.net</h1>
     <div id="puropano"></div>
     <div class="navigation-buttons">
-        <button id="previousButton" onclick="showPreviousImage()" style="display: none;">Önceki</button>
+        <button id="previousButton" onclick="showPreviousImage()" style="display: none">Önceki</button>
         <button id="randomButton" onclick="showRandomImage()">Rastgele</button>
-        <button id="nextButton" onclick="showNextImage()" style="display: none;">Sonraki</button>
+        <button id="nextButton" onclick="showNextImage()" style="display: none">Sonraki</button>
     </div>
 
     <div class="tedkwasright-logos">
@@ -208,7 +209,7 @@
             "img/boodevpuro.gif",
             "img/tarantinopuro.jpg",
             "img/sopranosgifpuro.gif",
-            "img/obamapuro.jpg"
+            "img/obamapuro.jpg",
         ];
 
         var currentImageId = 0;
@@ -219,36 +220,43 @@
         }
 
         function updateNavigationButtons() {
-            document.getElementById('previousButton').style.display = currentImageId === 1 ? 'none' : 'inline-block';
-            document.getElementById('nextButton').style.display = currentImageId === images.length ? 'none' : 'inline-block';
+            document.getElementById("previousButton").style.display =
+                currentImageId === 1 ? "none" : "inline-block";
+            document.getElementById("nextButton").style.display =
+                currentImageId === images.length ? "none" : "inline-block";
+        }
+
+        function updateOgImage(imageSrc) {
+            var ogImage = document.getElementById("ogImage");
+            ogImage.setAttribute("content", imageSrc);
         }
 
         function showImage(imageId) {
-            var puropano = document.getElementById('puropano');
-            puropano.innerHTML = '';
+            var puropano = document.getElementById("puropano");
+            puropano.innerHTML = "";
 
-            var container = document.createElement('div');
-            container.className = 'image-container';
+            var container = document.createElement("div");
+            container.className = "image-container";
 
-            var idLabel = document.createElement('div');
-            idLabel.className = 'image-id';
+            var idLabel = document.createElement("div");
+            idLabel.className = "image-id";
             idLabel.textContent = "#" + imageId;
 
-            var img = document.createElement('img');
+            var img = document.createElement("img");
             img.src = images[imageId - 1];
             img.alt = imageId;
 
-            var copyButton = document.createElement('button');
-            copyButton.className = 'copy-button';
-            copyButton.textContent = 'Kopyala';
-            copyButton.onclick = function() {
-                var dummy = document.createElement('textarea');
+            var copyButton = document.createElement("button");
+            copyButton.className = "copy-button";
+            copyButton.textContent = "Kopyala";
+            copyButton.onclick = function () {
+                var dummy = document.createElement("textarea");
                 document.body.appendChild(dummy);
                 dummy.value = "https://turkpuro.net?id=" + img.alt;
                 dummy.select();
-                document.execCommand('copy');
+                document.execCommand("copy");
                 document.body.removeChild(dummy);
-                alert('Puro link kopyalandı');
+                alert("Puro link kopyalandı");
             };
 
             container.appendChild(idLabel);
@@ -258,15 +266,15 @@
 
             currentImageId = imageId;
             updateNavigationButtons();
+            updateOgImage(img.src);
         }
 
-        window.onload = function() {
-            var idFromUrl = getQueryParam('id');
+        window.onload = function () {
+            var idFromUrl = getQueryParam("id");
             if (idFromUrl) {
                 var imageId = parseInt(idFromUrl);
                 if (!isNaN(imageId) && imageId >= 1 && imageId <= images.length) {
                     showImage(imageId);
-                    metaPuro(imageId);
                 } else {
                     var randomId = Math.floor(Math.random() * images.length) + 1;
                     showImage(randomId);
@@ -276,20 +284,6 @@
                 showImage(randomId);
             }
         };
-
-
-        function metaPuro(imageId) {
-            var imageUrl = images[imageId - 1];
-            var metaTag = document.querySelector('meta[property="og:image"]');
-            if (metaTag) {
-                metaTag.setAttribute('content', imageUrl);
-            } else {
-                metaTag = document.createElement('meta');
-                metaTag.setAttribute('property', 'og:image');
-                metaTag.setAttribute('content', imageUrl);
-                document.getElementsByTagName('head')[0].appendChild(metaTag);
-            }
-        }
 
         function showPreviousImage() {
             if (currentImageId > 1) {
