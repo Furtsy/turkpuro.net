@@ -15,7 +15,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:description" content="türkpuro harmanı oldum" />
     <meta property="og:url" content="https://turkpuro.net/" />
-    <meta property="og:image" content="" id="ogImage" />
+    <meta property="og:image" content="https://turkpuro.net/img/tategithubpuro.jpg" />
     <meta name="twitter:title" content="turkpuro.net" />
     <meta name="twitter:description" content="türkpuro harmanı oldum" />
 
@@ -210,6 +210,8 @@
             "img/tarantinopuro.jpg",
             "img/sopranosgifpuro.gif",
             "img/obamapuro.jpg",
+            "img/abuzerpuro.jpg",
+            "img/alcaponepuro.jpg",
         ];
 
         var currentImageId = 0;
@@ -224,11 +226,6 @@
                 currentImageId === 1 ? "none" : "inline-block";
             document.getElementById("nextButton").style.display =
                 currentImageId === images.length ? "none" : "inline-block";
-        }
-
-        function updateOgImage(imageSrc) {
-            var ogImage = document.getElementById("ogImage");
-            ogImage.setAttribute("content", imageSrc);
         }
 
         function showImage(imageId) {
@@ -266,7 +263,6 @@
 
             currentImageId = imageId;
             updateNavigationButtons();
-            updateOgImage(img.src);
         }
 
         window.onload = function () {
